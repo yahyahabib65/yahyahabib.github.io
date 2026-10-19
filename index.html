@@ -1,131 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yahya Habib - Profile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yahya Habib | Data and backend engineer</title>
+<meta name="description" content="Yahya Habib builds data pipelines, backend systems and applied machine learning. MS in Artificial Intelligence, LUMS. Projects, experience and contact details.">
+<meta name="theme-color" content="#0f6cbd">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230f6cbd'/%3E%3Ctext x='16' y='22' font-family='Segoe UI,Arial,sans-serif' font-size='16' font-weight='600' text-anchor='middle' fill='white'%3EYH%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --surface: #f5f5f5;
+    --ink: #242424;
+    --muted: #616161;
+    --rule: #d1d1d1;
+    --grid: rgba(15, 108, 189, 0.07);
+    --accent: #0f6cbd;
+    --accent-ink: #ffffff;
+    --accent-hover: #0c5a9f;
+    --font: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Roboto, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1b1b1b;
+      --surface: #262626;
+      --ink: #f5f5f5;
+      --muted: #adadad;
+      --rule: #424242;
+      --grid: rgba(115, 170, 230, 0.08);
+      --accent: #479ef5;
+      --accent-ink: #0b0b0b;
+      --accent-hover: #6cb8ff;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; border-radius: 0; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  h1, h2, h3, p { margin: 0; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: var(--accent-ink); padding: 8px 16px; z-index: 20; }
+  .skip:focus { left: 8px; }
+
+  /* Header */
+  header.bar { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--rule); }
+  .bar-in { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 600; }
+  .brand:hover { text-decoration: none; }
+  .mark { width: 28px; height: 28px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-size: 13px; font-weight: 600; }
+  nav ul { display: flex; height: 56px; }
+  nav a { display: flex; align-items: center; height: 100%; padding: 0 16px; color: var(--ink); font-size: 14px; border-bottom: 2px solid transparent; }
+  nav a:hover { text-decoration: none; background: var(--surface); }
+  nav a.on { border-bottom-color: var(--accent); font-weight: 600; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 20px; font: inherit; font-size: 14px; font-weight: 600; border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; transition: background .15s; }
+  .btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); text-decoration: none; }
+  .btn.line { background: transparent; color: var(--accent); }
+  .btn.line:hover { background: var(--surface); border-color: var(--accent); }
+  .btn.sm { min-height: 32px; padding: 0 14px; }
+
+  /* Hero */
+  .hero { border-bottom: 1px solid var(--rule); background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px); background-size: 8.3333% 100%; }
+  .hero-in { display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-l { padding: 72px 40px 72px 0; border-right: 1px solid var(--rule); display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+  .hero h1 { font-size: clamp(40px, 6vw, 68px); line-height: 1.05; font-weight: 600; letter-spacing: -0.02em; }
+  .hero .role { font-size: 20px; line-height: 1.4; max-width: 30ch; }
+  .hero .lede { color: var(--muted); max-width: 52ch; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .hero-r { padding: 72px 0 72px 40px; display: flex; align-items: center; }
+  .profile { width: 100%; border: 1px solid var(--rule); background: var(--bg); }
+  .profile div { display: grid; grid-template-columns: 1fr 2fr; border-top: 1px solid var(--rule); }
+  .profile div:first-child { border-top: 0; }
+  .profile dt, .profile dd { margin: 0; padding: 14px 16px; font-size: 15px; }
+  .profile dt { color: var(--muted); border-right: 1px solid var(--rule); background: var(--surface); }
+  .profile .live { display: inline-block; width: 8px; height: 8px; background: #107c10; margin-right: 8px; }
+
+  /* Stats */
+  .stats { border-bottom: 1px solid var(--rule); }
+  .stats ul { display: grid; grid-template-columns: repeat(4, 1fr); border-left: 1px solid var(--rule); }
+  .stats li { padding: 28px 24px; border-right: 1px solid var(--rule); }
+  .stats b { display: block; font-size: 36px; line-height: 1.1; font-weight: 600; }
+  .stats span { color: var(--muted); font-size: 14px; }
+
+  /* Sections */
+  section { padding: 72px 0; scroll-margin-top: 56px; }
+  section + section { border-top: 1px solid var(--rule); }
+  .sec-h { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+  .sec-h::before { content: ""; width: 14px; height: 14px; background: var(--accent); flex: none; }
+  .sec-h h2 { font-size: 28px; font-weight: 600; line-height: 1.2; }
+  .sec-h::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+  /* Ruled grids: 1px gaps over a rule-coloured base give exact symmetric lines */
+  .ruled { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  .ruled > * { background: var(--bg); }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card { padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: background .15s, box-shadow .15s; }
+  .card:hover { background: var(--surface); box-shadow: inset 0 3px 0 var(--accent); }
+  .card h3 { font-size: 20px; font-weight: 600; line-height: 1.25; }
+  .card .kind { color: var(--muted); font-size: 14px; }
+  .card p { font-size: 15px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tags li { font-size: 12px; padding: 2px 8px; border: 1px solid var(--rule); color: var(--muted); }
+  .card .more { margin-top: auto; padding-top: 8px; font-size: 14px; font-weight: 600; }
+  .card .more.none { color: var(--muted); font-weight: 400; }
+
+  /* Experience */
+  .job { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); }
+  .job + .job { border-top: 0; }
+  .job-l { padding: 28px; border-right: 1px solid var(--rule); background: var(--surface); }
+  .job-l h3 { font-size: 20px; font-weight: 600; }
+  .job-l p { color: var(--muted); font-size: 15px; }
+  .job-r { padding: 28px; }
+  .job-r li { position: relative; padding-left: 20px; font-size: 15px; }
+  .job-r li + li { margin-top: 10px; }
+  .job-r li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; background: var(--accent); }
+
+  /* Skills */
+  .skill { padding: 28px; }
+  .skill h3 { font-size: 16px; font-weight: 600; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .skill li { font-size: 15px; padding: 3px 0; }
+
+  /* Contact */
+  .contact a.cell { display: block; padding: 28px; color: var(--ink); transition: background .15s, box-shadow .15s; }
+  .contact a.cell:hover { background: var(--surface); box-shadow: inset 0 3px 0 var(--accent); text-decoration: none; }
+  .contact .label { display: block; color: var(--muted); font-size: 14px; }
+  .contact .value { font-size: 18px; font-weight: 600; word-break: break-word; }
+  .contact .cta { margin-top: 24px; }
+
+  footer { border-top: 1px solid var(--rule); padding: 24px 0; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .cols-3 { grid-template-columns: repeat(2, 1fr); }
+    .cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .stats ul { grid-template-columns: repeat(2, 1fr); }
+    .stats li { border-bottom: 1px solid var(--rule); }
+    .stats li:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+  @media (max-width: 760px) {
+    nav { display: none; }
+    .hero-in, .job { grid-template-columns: 1fr; }
+    .hero-l { border-right: 0; padding: 48px 0 32px; }
+    .hero-r { padding: 0 0 48px; }
+    .job-l { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .cols-3, .cols-4 { grid-template-columns: 1fr; }
+    section { padding: 48px 0; }
+  }
+</style>
 </head>
-<body class="o_web_client">
-    <div class="o_action_manager">
-        <div class="o_form_view">
-            
-            <div class="o_form_statusbar">
-                <div class="o_statusbar_buttons">
-                    <button class="btn btn-primary">Contact Me</button>
-                    <button class="btn btn-secondary">Download Resume</button>
-                </div>
-                <div class="o_statusbar_status">
-                    <button class="o_arrow_button o_arrow_button_current">Available</button>
-                    <button class="o_arrow_button">In Project</button>
-                    <button class="o_arrow_button">Learning</button>
-                </div>
-            </div>
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
-            <div class="o_form_sheet_bg">
-                <div class="o_form_sheet">
-                    
-                    <div class="ribbon ribbon-top-right"><span>Open to Internships</span></div>
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top" aria-label="Yahya Habib, top of page"><span class="mark" aria-hidden="true">YH</span>Yahya Habib</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn line sm" href="resume.pdf">Download résumé</a>
+  </div>
+</header>
 
-                    <div class="oe_button_box" name="button_box">
-                        <a href="https://github.com/yourusername" target="_blank" class="oe_stat_button btn">
-                            <i class="fa fa-github fa-fw o_button_icon"></i>
-                            <div class="o_stat_info">
-                                <span class="o_stat_text">GitHub</span>
-                                <span class="o_stat_value">Repositories</span>
-                            </div>
-                        </a>
-                        <button class="oe_stat_button btn">
-                            <i class="fa fa-code-branch fa-fw o_button_icon text-success"></i>
-                            <div class="o_stat_info">
-                                <span class="o_stat_text">Active Dev</span>
-                                <span class="o_stat_value">FarmAI</span>
-                            </div>
-                        </button>
-                    </div>
-
-                    <img src="https://ui-avatars.com/api/?name=Yahya+Habib&size=128&background=714B67&color=fff" class="oe_avatar" alt="Avatar"/>
-                    <div class="oe_title">
-                        <label class="o_form_label">Full Stack AI & ERP Developer</label>
-                        <h1>Yahya Habib</h1>
-                    </div>
-
-                    <div class="o_group">
-                        <table class="o_group_col_6">
-                            <tbody>
-                                <tr>
-                                    <td class="o_td_label"><label class="o_form_label">Education</label></td>
-                                    <td><span>MS Computer Science (LUMS)</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="o_td_label"><label class="o_form_label">Specialization</label></td>
-                                    <td><span>Deep Vision & Language Models (DVLM)</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="o_td_label"><label class="o_form_label">Email</label></td>
-                                    <td><a href="mailto:your.email@example.com" class="o_form_uri">your.email@example.com</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="o_group_col_6">
-                            <tbody>
-                                <tr>
-                                    <td class="o_td_label"><label class="o_form_label">Odoo Expertise</label></td>
-                                    <td><span class="o_badge text-bg-info">v15</span> <span class="o_badge text-bg-info">v16</span> <span class="o_badge text-bg-info">v18</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="o_td_label"><label class="o_form_label">AI/Data Stack</label></td>
-                                    <td><span>PyTorch, Transformers, Spark, Hadoop</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="o_td_label"><label class="o_form_label">Hardware</label></td>
-                                    <td><span>ROS 2 Jazzy, ESP32</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="o_notebook">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item"><a class="nav-link active" data-target="#tab_experience">Experience</a></li>
-                            <li class="nav-item"><a class="nav-link" data-target="#tab_projects">Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" data-target="#tab_tech">Technical Notes</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tab_experience">
-                                <p>Extensive experience in Odoo development, customizing modules ranging from HR and payroll to custom reports and eCommerce integrations. Focused on resolving complex backend logic and ensuring stable performance across multiple system upgrades.</p>
-                            </div>
-                            <div class="tab-pane" id="tab_projects">
-                                <ul>
-                                    <li><strong>FarmAI:</strong> Configuring an open-source AI model for real-world farm analytics. Focused on creating a calibrated modeling framework.</li>
-                                    <li><strong>AR Headset:</strong> Building a custom Augmented Reality headset from the ground up.</li>
-                                </ul>
-                            </div>
-                            <div class="tab-pane" id="tab_tech">
-                                <p><strong>Preferred Dev Environment:</strong> Transitioning towards Linux distributions for enhanced stability in AI model training and seamless Odoo containerization, moving away from Windows 11 resource overhead.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
+<main id="main">
+  <div class="hero" id="top">
+    <div class="wrap hero-in">
+      <div class="hero-l">
+        <h1>Yahya Habib</h1>
+        <p class="role">Data and backend engineer building pipelines, cloud systems and applied AI.</p>
+        <p class="lede">I have three years of production experience across more than 20 client systems, and an MS in Artificial Intelligence from LUMS. My recent work covers satellite and sensor data, retrieval-augmented generation and streaming pipelines.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">View projects</a>
+          <a class="btn line" href="#contact">Get in touch</a>
         </div>
+      </div>
+      <div class="hero-r">
+        <dl class="profile">
+          <div><dt>Focus</dt><dd>Data engineering, backend, applied AI</dd></div>
+          <div><dt>Education</dt><dd>MS Artificial Intelligence, LUMS, 2024 to 2026</dd></div>
+          <div><dt>Experience</dt><dd>Software Engineer since January 2023</dd></div>
+          <div><dt>Core stack</dt><dd>Python, SQL, PySpark, Kafka, PostgreSQL, AWS</dd></div>
+          <div><dt>Status</dt><dd><span class="live" aria-hidden="true"></span>Open to opportunities</dd></div>
+        </dl>
+      </div>
     </div>
+  </div>
 
-    <script>
-        document.querySelectorAll('.nav-link').forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active classes
-                document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                const target = document.querySelector(this.getAttribute('data-target'));
-                target.classList.add('active');
-            });
-        });
-    </script>
+  <div class="stats">
+    <div class="wrap">
+      <ul>
+        <li><b>20+</b><span>Client systems delivered</span></li>
+        <li><b>55</b><span>Companies in the largest multi-company deployment</span></li>
+        <li><b>30+</b><span>Automated reporting pipelines</span></li>
+        <li><b>13</b><span>Sentinel-2 bands fused with live sensor data</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-h"><h2>Projects</h2></div>
+      <div class="ruled cols-3">
+
+        <article class="card">
+          <h3>Farm AI</h3>
+          <p class="kind">Precision agriculture platform, MS thesis</p>
+          <p>Fuses Sentinel-2 imagery with live IoT sensor data to predict irrigation, yield and microclimate. The irrigation classifier reaches 82 to 89% accuracy. Includes crop-cycle detection from vegetation indices and clustering for sensor placement. Built solo.</p>
+          <ul class="tags"><li>Django REST</li><li>PostGIS</li><li>MinIO</li><li>Docker</li><li>scikit-learn</li></ul>
+          <a class="more" href="https://github.com/yahyahabib65/farmai-django">View on GitHub</a>
+        </article>
+
+        <article class="card">
+          <h3>Wakeel-LLM</h3>
+          <p class="kind">Family law assistant for Pakistan</p>
+          <p>A retrieval-augmented assistant for Pakistan family law, in Urdu and English. In a team of three, I built the retrieval pipeline, the agentic drafting module, the case-law scraper and the Streamlit app.</p>
+          <ul class="tags"><li>LangChain</li><li>Chroma</li><li>DeepSeek-7B</li><li>Streamlit</li></ul>
+          <a class="more" href="https://github.com/yahyahabib65/Wakeel-LLM">View on GitHub</a>
+        </article>
+
+        <article class="card">
+          <h3>Real-time streaming pipeline</h3>
+          <p class="kind">Kafka and PySpark Structured Streaming</p>
+          <p>A Dockerized Kafka and ZooKeeper setup, a Python event producer, and a streaming consumer that ranks trending songs per region over two-minute windows by play count and skip ratio.</p>
+          <ul class="tags"><li>Kafka</li><li>PySpark</li><li>Docker</li></ul>
+          <a class="more" href="https://github.com/darklord2021/ai601-data-engineering">View course repository</a>
+        </article>
+
+        <article class="card">
+          <h3>Warehousing and data quality</h3>
+          <p class="kind">HDFS, Hive and Great Expectations</p>
+          <p>Partitioned HDFS ingestion, Hive external tables and a Parquet star schema with partition-pruned queries. Also a star and snowflake design for a hospital data model, and validation suites covering row, column, table and distribution checks.</p>
+          <ul class="tags"><li>Hadoop</li><li>Hive</li><li>Parquet</li><li>Great Expectations</li></ul>
+          <a class="more" href="https://github.com/darklord2021/ai601-data-engineering">View course repository</a>
+        </article>
+
+        <article class="card">
+          <h3>Flickr8k caption analysis</h3>
+          <p class="kind">Dask, NLP and dashboarding</p>
+          <p>Processed 8,092 images and captions in parallel, extracted part-of-speech, sentiment and theme features, and published an interactive dashboard with a dataset prepared for Power BI.</p>
+          <ul class="tags"><li>Dask</li><li>NLTK</li><li>TextBlob</li><li>Streamlit</li></ul>
+          <span class="more none">Course project, no public repository</span>
+        </article>
+
+        <article class="card">
+          <h3>Client system integrations</h3>
+          <p class="kind">Production work at Infinitrs</p>
+          <p>Order, inventory and returns sync with Amazon, credit and insurance integrations with Allianz and Coface, two major version migrations, and deployments on AWS EC2 with a separate RDS database.</p>
+          <ul class="tags"><li>Python</li><li>PostgreSQL</li><li>AWS</li><li>NGINX</li></ul>
+          <span class="more none">Client work, not public</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-h"><h2>Experience</h2></div>
+
+      <div class="job">
+        <div class="job-l">
+          <h3>Software Engineer</h3>
+          <p>Infinitrs (Private) Limited</p>
+          <p>November 2023 to present</p>
+        </div>
+        <div class="job-r">
+          <ul>
+            <li>Built more than 20 backend modules in Python for an ERP platform, automating client business processes by 40% and cutting decision time by 30%.</li>
+            <li>Built more than 30 reporting pipelines that turn raw database queries into PDF reports, cutting report interpretation time by 60%.</li>
+            <li>Delivered multi-company deployments for pharma and holding-group clients, up to 55 companies.</li>
+            <li>Gathered requirements directly with clients and designed the backend solutions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="job-l">
+          <h3>Software Engineer</h3>
+          <p>Affinity Business Suite</p>
+          <p>January 2023 to October 2023</p>
+        </div>
+        <div class="job-r">
+          <ul>
+            <li>Built more than 10 backend modules and reporting pipelines, automating business processes by 55%.</li>
+            <li>Moved on-premise systems to AWS RDS, replacing manual data access with a secure remote database.</li>
+            <li>Configured SSL and NGINX for production, improving content delivery speed by 35%.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-h"><h2>Skills</h2></div>
+      <div class="ruled cols-4">
+        <div class="skill">
+          <h3>Data engineering</h3>
+          <ul><li>PySpark</li><li>Apache Kafka</li><li>Hadoop and Hive</li><li>Dask</li><li>Parquet and star schemas</li><li>Great Expectations</li></ul>
+        </div>
+        <div class="skill">
+          <h3>Backend and cloud</h3>
+          <ul><li>Python, Django REST, FastAPI</li><li>C# and ASP.NET Core</li><li>PostgreSQL and PostGIS</li><li>AWS EC2 and RDS</li><li>Docker, NGINX, Linux</li></ul>
+        </div>
+        <div class="skill">
+          <h3>Machine learning</h3>
+          <ul><li>scikit-learn, TensorFlow, PyTorch</li><li>LangChain and Chroma</li><li>Hugging Face Transformers</li><li>Geospatial and time-series features</li></ul>
+        </div>
+        <div class="skill">
+          <h3>Tools and hardware</h3>
+          <ul><li>Git and GitHub</li><li>Streamlit</li><li>Postman</li><li>ROS 2, ESP32</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="sec-h"><h2>Contact</h2></div>
+      <div class="ruled cols-3">
+        <a class="cell" href="mailto:yahyahabib@live.com"><span class="label">Email</span><span class="value">yahyahabib@live.com</span></a>
+        <a class="cell" href="https://github.com/yahyahabib65"><span class="label">GitHub</span><span class="value">github.com/yahyahabib65</span></a>
+        <a class="cell" href="https://linkedin.com/in/yahyahabib"><span class="label">LinkedIn</span><span class="value">linkedin.com/in/yahyahabib</span></a>
+      </div>
+      <div class="cta"><a class="btn" href="resume.pdf">Download résumé</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>Yahya Habib</span><span>© 2026</span></div>
+</footer>
+
+<script>
+  // Highlight the nav link for the section in view.
+  (function () {
+    var links = document.querySelectorAll('nav a');
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && map[e.target.id]) {
+          links.forEach(function (a) { a.classList.remove('on'); });
+          map[e.target.id].classList.add('on');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(map).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>
